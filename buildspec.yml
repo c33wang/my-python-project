@@ -15,6 +15,10 @@ phases:
       - echo "Running tests..."
       - mkdir -p reports
       - pytest --junitxml=reports/test-results.xml --html=reports/report.html --self-contained-html
+      - echo "Checking generated files:"
+      - ls -la reports/
+      - echo "Current directory contents:"
+      - ls -la
 
 cache:
   paths:

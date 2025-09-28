@@ -21,9 +21,11 @@ phases:
       - cp report.html artifacts/
       - cp test-results.xml artifacts/
       - ls -la artifacts/
+      - echo "Creating zip for manual upload..."
+      - cd artifacts && zip -r ../test-reports.zip . && cd ..
+      - ls -la test-reports.zip
 
 artifacts:
-  base-directory: artifacts
   files:
-    - '**/*'
+    - test-reports.zip
   name: test-reports

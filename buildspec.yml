@@ -16,10 +16,9 @@ phases:
       - pytest --junitxml=test-results.xml --html=report.html --self-contained-html
       - echo "Checking generated files:"
       - ls -la *.xml *.html
-
-cache:
-  paths:
-    - '/tmp/pip-cache/**/*'
+      - echo "=== BUILDSPEC DEBUG ==="
+      - echo "Current buildspec artifacts section:"
+      - grep -A 10 "artifacts:" buildspec.yml || echo "No artifacts section found"
 
 artifacts:
   files:

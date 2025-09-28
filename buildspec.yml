@@ -19,13 +19,15 @@ phases:
       - ls -la reports/
       - echo "Current directory contents:"
       - ls -la
+      - echo "Checking buildspec content:"
+      - cat buildspec.yml
 
 cache:
   paths:
     - '/tmp/pip-cache/**/*'
 
 artifacts:
+  base-directory: '.'
   files:
-    - reports/test-results.xml
-    - reports/report.html
+    - 'reports/**/*'
   name: test-reports

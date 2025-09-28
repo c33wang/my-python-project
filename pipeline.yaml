@@ -102,7 +102,22 @@ Resources:
         Image: aws/codebuild/standard:7.0
       Source:
         Type: CODEPIPELINE
-        BuildSpec: buildspec.yml
+        BuildSpec: |
+          version: 0.2
+          phases:
+            install:
+              runtime-versions:
+                python: 3.11
+              commands:
+                - pip install -r requirements.txt
+            build:
+              commands:
+                - pytest --html=report.html --self-contained-html
+                - ls -la report.html
+                - echo "=== INLINE BUILDSPEC TEST ==="
+          artifacts:
+            files:
+              - report.html
 
   SimpleCiCdPipeline:
     Type: AWS::CodePipeline::Pipeline

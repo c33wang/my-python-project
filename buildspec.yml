@@ -26,5 +26,6 @@ cache:
 
 artifacts:
   files:
-    - reports/**/*
+    - reports/test-results.xml
+    - reports/report.html
   name: test-reports

@@ -24,12 +24,6 @@ cache:
   paths:
     - '/tmp/pip-cache/**/*'
 
-reports:
-  pytest_reports:
-    files:
-      - reports/test-results.xml
-    file-format: JUNITXML
-
 artifacts:
   files:
     - reports/**/*

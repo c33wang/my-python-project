@@ -13,21 +13,16 @@ phases:
   build:
     commands:
       - echo "Running tests..."
-      - mkdir -p reports
-      - pytest --junitxml=reports/test-results.xml --html=reports/report.html --self-contained-html
+      - pytest --junitxml=test-results.xml --html=report.html --self-contained-html
       - echo "Checking generated files:"
-      - ls -la reports/
-      - echo "Current directory contents:"
-      - ls -la
-      - echo "Checking buildspec content:"
-      - cat buildspec.yml
+      - ls -la *.xml *.html
 
 cache:
   paths:
     - '/tmp/pip-cache/**/*'
 
 artifacts:
-  base-directory: '.'
   files:
-    - 'reports/**/*'
+    - report.html
+    - test-results.xml
   name: test-reports

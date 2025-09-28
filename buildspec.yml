@@ -4,28 +4,12 @@ phases:
     runtime-versions:
       python: 3.11
     commands:
-      - echo "Installing dependencies..."
-      - echo "Cache status before install:"
-      - ls -la /tmp/pip-cache/ || echo "No cache found"
-      - pip install --cache-dir /tmp/pip-cache -r requirements.txt
-      - echo "Cache status after install:"
-      - ls -la /tmp/pip-cache/
+      - pip install -r requirements.txt
   build:
     commands:
-      - echo "Running tests..."
-      - pytest --junitxml=test-results.xml --html=report.html --self-contained-html
-      - echo "Checking generated files:"
-      - ls -la *.xml *.html
-      - echo "Creating artifacts manually..."
-      - mkdir -p artifacts
-      - cp report.html artifacts/
-      - cp test-results.xml artifacts/
-      - ls -la artifacts/
-      - echo "Creating zip for manual upload..."
-      - cd artifacts && zip -r ../test-reports.zip . && cd ..
-      - ls -la test-reports.zip
+      - pytest --html=report.html --self-contained-html
+      - ls -la report.html
 
 artifacts:
   files:
-    - test-reports.zip
-  name: test-reports
+    - report.html

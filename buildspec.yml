@@ -16,12 +16,14 @@ phases:
       - pytest --junitxml=test-results.xml --html=report.html --self-contained-html
       - echo "Checking generated files:"
       - ls -la *.xml *.html
-      - echo "=== BUILDSPEC DEBUG ==="
-      - echo "Current buildspec artifacts section:"
-      - grep -A 10 "artifacts:" buildspec.yml || echo "No artifacts section found"
+      - echo "Creating artifacts manually..."
+      - mkdir -p artifacts
+      - cp report.html artifacts/
+      - cp test-results.xml artifacts/
+      - ls -la artifacts/
 
 artifacts:
+  base-directory: artifacts
   files:
-    - report.html
-    - test-results.xml
+    - '**/*'
   name: test-reports

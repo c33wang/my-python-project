@@ -13,7 +13,8 @@ phases:
   build:
     commands:
       - echo "Running tests..."
-      - pytest --junitxml=test-results.xml --html=report.html --self-contained-html
+      - mkdir -p reports
+      - pytest --junitxml=reports/test-results.xml --html=reports/report.html --self-contained-html
 
 cache:
   paths:
@@ -22,10 +23,10 @@ cache:
 reports:
   pytest_reports:
     files:
-      - test-results.xml
+      - reports/test-results.xml
     file-format: JUNITXML
 
 artifacts:
   files:
-    - report.html
+    - reports/**/*
   name: test-reports

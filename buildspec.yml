@@ -1,0 +1,26 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Installing dependencies..."
+      - echo "Cache status before install:"
+      - ls -la /tmp/pip-cache/ || echo "No cache found"
+      - pip install --cache-dir /tmp/pip-cache -r requirements.txt
+      - echo "Cache status after install:"
+      - ls -la /tmp/pip-cache/
+  build:
+    commands:
+      - echo "Running tests..."
+      - pytest --junitxml=test-results.xml
+
+cache:
+  paths:
+    - '/tmp/pip-cache/**/*'
+
+reports:
+  pytest_reports:
+    files:
+      - test-results.xml
+    file-format: JUNITXML
